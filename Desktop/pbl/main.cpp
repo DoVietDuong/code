@@ -22,16 +22,13 @@ public:
     }
     string ten;
     double gia;
-    int soluong;
-    TiemKem(string ten, float gia) : ten(ten), gia(gia) {}
+    TiemKem(string ten, double gia) : ten(ten), gia(gia) {}
 
-    // Getter cho tên sản phẩm
     string getten() const
     {
         return ten;
     }
 
-    // Getter cho giá sản phẩm
     float getgia() const
     {
         return gia;
@@ -62,7 +59,6 @@ public:
         if (KemDauPhong != 0)
             cout << "                    8. KemDauPhong - " << KemDauPhong << " dong" << endl;
 
-        // Hiển thị các sản phẩm được thêm vào
         for (size_t i = 0; i < sanpham.size(); ++i)
         {
             cout << "                    " << (i + 9) << ". " << sanpham[i].getten() << " - " << sanpham[i].getgia() << " dong" << endl;
@@ -159,7 +155,7 @@ public:
         }
     }
 
-    // Hàm xóa sản phẩm từ danh sách
+    // -----------------------xoa sp----------------------//
     void deleteTiemKem()
     {
         int index;
@@ -206,7 +202,63 @@ public:
         {
             cout << "Khong hop le. Vui long thu lai:" << endl;
         }
-        Menu(); // Hiển thị lại menu sau khi xóa sản phẩm
+        Menu();
+    }
+
+    //----------------sửa giá---------------//
+    void SuaGia()
+    {
+        int index;
+        double GiaMoi;
+        cout << "Nhap chi so san pham can sua gia: ";
+        cin >> index;
+
+        if (index >= 1 && index <= 8)
+        {
+            cout << "Nhap gia moi: ";
+            cin >> GiaMoi;
+
+            switch (index)
+            {
+            case 1:
+                KemDau = GiaMoi;
+                break;
+            case 2:
+                KemSua = GiaMoi;
+                break;
+            case 3:
+                KemVani = GiaMoi;
+                break;
+            case 4:
+                KemSocola = GiaMoi;
+                break;
+            case 5:
+                KemSauRieng = GiaMoi;
+                break;
+            case 6:
+                KemDua = GiaMoi;
+                break;
+            case 7:
+                KemHanhNhan = GiaMoi;
+                break;
+            case 8:
+                KemDauPhong = GiaMoi;
+                break;
+            }
+            cout << "Sua gia san pham thanh cong" << endl;
+        }
+        else if (index >= 9 && index < 9 + sanpham.size())
+        {
+            cout << "Nhap gia moi: ";
+            cin >> GiaMoi;
+            sanpham[index - 9].gia = GiaMoi;
+            cout << "Sua gia san pham thanh cong" << endl;
+        }
+        else
+        {
+            cout << "Khong hop le. Vui long thu lai:" << endl;
+        }
+        Menu();
     }
 };
 
@@ -219,14 +271,14 @@ int main()
 
     do
     {
-        cout << "\n1. Them san pham\n2. Xoa san pham\n3. Hien thi san pham\n4. Hien thi menu\n5. Thoat\nNhap lua chon: ";
+        cout << "\n1. Them san pham\n2. Xoa san pham\n3. Hien thi san pham\n4. Hien thi menu\n5. Sua gia san pham\n6. Thoat\nNhap lua chon: ";
         cin >> choice;
 
         switch (choice)
         {
         case 1:
             tiemkem.AddTiemKem();
-            tiemkem.Menu(); // Hiển thị lại menu sau khi thêm sản phẩm mới
+            tiemkem.Menu();
             break;
         case 2:
             tiemkem.deleteTiemKem();
@@ -238,12 +290,15 @@ int main()
             tiemkem.Menu();
             break;
         case 5:
+            tiemkem.SuaGia();
+            break;
+        case 6:
             cout << "Thoat chuong trinh.";
             break;
         default:
             cout << "Khong hop le. Vui long thu lai:" << endl;
         }
-    } while (choice != 5);
+    } while (choice != 6);
 
     cout << "Ket thuc chuong trinh. Tam biet!" << endl;
 

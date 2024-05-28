@@ -22,8 +22,7 @@ public:
     }
     string ten;
     double gia;
-    int soluong;
-    TiemKem(string ten, float gia) : ten(ten), gia(gia) {}
+    TiemKem(string ten, double gia) : ten(ten), gia(gia) {}
 
     // Getter cho tên sản phẩm
     string getten() const
@@ -210,43 +209,43 @@ public:
     }
 
     //----------------sửa giá---------------//
-    void updatePrice()
+    void SuaGia()
     {
         int index;
-        double newPrice;
+        double GiaMoi;
         cout << "Nhap chi so san pham can sua gia: ";
         cin >> index;
 
         if (index >= 1 && index <= 8)
         {
             cout << "Nhap gia moi: ";
-            cin >> newPrice;
+            cin >> GiaMoi;
 
             switch (index)
             {
             case 1:
-                KemDau = newPrice;
+                KemDau = GiaMoi;
                 break;
             case 2:
-                KemSua = newPrice;
+                KemSua = GiaMoi;
                 break;
             case 3:
-                KemVani = newPrice;
+                KemVani = GiaMoi;
                 break;
             case 4:
-                KemSocola = newPrice;
+                KemSocola = GiaMoi;
                 break;
             case 5:
-                KemSauRieng = newPrice;
+                KemSauRieng = GiaMoi;
                 break;
             case 6:
-                KemDua = newPrice;
+                KemDua = GiaMoi;
                 break;
             case 7:
-                KemHanhNhan = newPrice;
+                KemHanhNhan = GiaMoi;
                 break;
             case 8:
-                KemDauPhong = newPrice;
+                KemDauPhong = GiaMoi;
                 break;
             }
             cout << "Sua gia san pham thanh cong" << endl;
@@ -254,8 +253,8 @@ public:
         else if (index >= 9 && index < 9 + sanpham.size())
         {
             cout << "Nhap gia moi: ";
-            cin >> newPrice;
-            sanpham[index - 9].gia = newPrice;
+            cin >> GiaMoi;
+            sanpham[index - 9].gia = GiaMoi;
             cout << "Sua gia san pham thanh cong" << endl;
         }
         else
@@ -294,7 +293,7 @@ int main()
             tiemkem.Menu();
             break;
         case 5:
-            tiemkem.updatePrice();
+            tiemkem.SuaGia();
             break;
         case 6:
             cout << "Thoat chuong trinh.";
